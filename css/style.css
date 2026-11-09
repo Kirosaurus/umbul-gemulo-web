@@ -123,3 +123,154 @@ a{color:inherit;text-decoration:none}
   .galeri-desc{text-align:left}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slider-track,.btn{transition:none}}
+
+/* ============================================================
+   UPDATE: transisi antar-section seamless (cross-fade + gradient menyatu),
+   deskripsi fasilitas muncul saat hover, footer ringkas
+   ============================================================ */
+:root{--fade:clamp(120px,24vh,280px)}
+
+/* 1. Section saling bertumpuk; gambar & gradient memudar di tepi atas/bawah */
+.tentang,.informasi,.galeri{margin-top:calc(var(--fade) * -1);background:transparent}
+.hero-content,.tentang-grid,.informasi-grid,.galeri-head,.slider{position:relative;z-index:2}
+.tentang-grid,.informasi-grid{padding-top:calc(110px + var(--fade));padding-bottom:calc(60px + var(--fade) * .6)}
+.galeri{padding-top:calc(110px + var(--fade));padding-bottom:calc(70px + var(--fade) * .6)}
+html{scroll-padding-top:0}
+.tentang,.informasi,.galeri{scroll-margin-top:var(--fade)}
+
+.hero>.img-slot.bg,.hero-shade{
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--fade)),transparent);
+          mask-image:linear-gradient(to bottom,#000 calc(100% - var(--fade)),transparent)}
+.tentang>.img-slot.bg,.tentang-wash,.informasi>.img-slot.bg,.informasi-wash,.galeri::before{
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 var(--fade),#000 calc(100% - var(--fade)),transparent);
+          mask-image:linear-gradient(to bottom,transparent,#000 var(--fade),#000 calc(100% - var(--fade)),transparent)}
+
+/* latar galeri dipindah ke ::before supaya bisa dimasking tanpa ikut memudarkan isi */
+.galeri::before{content:"";position:absolute;inset:0;z-index:0;background:
+  radial-gradient(520px 420px at 72% 37%,rgba(219,230,76,.95),rgba(168,213,89,.6) 50%,rgba(116,196,101,0) 100%),
+  radial-gradient(700px 500px at 30% 73%,rgba(0,128,76,.25),transparent 70%),
+  var(--primary)}
+.img-slot.bg.missing::after{display:none} /* label placeholder tidak muncul di gambar latar */
+
+/* 2. Deskripsi fasilitas: muncul saat hover/fokus (hanya di perangkat dengan mouse) */
+.card-cap p{transition:max-height .35s ease,opacity .3s ease,margin .3s ease}
+@media (hover:hover) and (pointer:fine) and (min-width:721px){
+  .card-cap p{max-height:0;opacity:0;overflow:hidden}
+  .card:hover .card-cap p,.card:focus-visible .card-cap p,.card:focus-within .card-cap p{max-height:9em;opacity:1}
+}
+/* di HP / layar sentuh / layar kecil: deskripsi langsung tampil (aturan di atas tidak berlaku) */
+
+/* 3. Footer ringkas */
+.kontak{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 32px;padding:16px var(--pad) 18px;font-size:13px;position:relative;z-index:2}
+.kontak h2{font-size:12px;font-weight:600;letter-spacing:.12em;opacity:.7}
+.kontak-link{margin-top:0;gap:8px;font-size:13px}
+.globe{width:22px;height:22px}
+.globe svg{width:14px;height:14px}
+.foot-notes{grid-column:2;grid-row:1 / span 2;flex-direction:column;align-items:flex-end;gap:2px;margin-top:0;font-size:12px;opacity:.75;text-align:right}
+@media (max-width:720px){
+  .kontak{grid-template-columns:1fr;gap:6px}
+  .foot-notes{grid-column:1;grid-row:auto;align-items:flex-start;text-align:left;margin-top:8px}
+}
+
+/* ============================================================
+   UPDATE 2: animasi interaksi, gambar membesar saat hover, viewer foto
+   ============================================================ */
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* Hero muncul saat halaman dibuka */
+.hero-content>*{animation:rise .8s ease both}
+.hero-content>*:nth-child(2){animation-delay:.12s}
+.hero-content>*:nth-child(3){animation-delay:.24s}
+
+/* Muncul saat di-scroll (memakai properti `translate` agar tidak bentrok dengan efek hover) */
+.reveal{opacity:0;translate:0 28px;
+  transition:opacity .7s ease var(--d,0s),translate .7s ease var(--d,0s),transform .35s ease,box-shadow .35s ease}
+.reveal.in{opacity:1;translate:0 0}
+
+/* Navbar */
+.brand{transition:transform .2s,filter .2s}
+.brand:hover{transform:translateY(-1px);filter:brightness(1.15)}
+.nav-links a{position:relative;display:inline-block;padding:4px 0;transition:color .2s,transform .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a:active{transform:scale(.94)}
+
+/* Tombol */
+.btn{transition:transform .2s,filter .2s,box-shadow .2s}
+.btn:hover{box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.btn:active{transform:translateY(0) scale(.95);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+
+/* Foto di bagian Tentang */
+.tentang-big,.tentang-small .img-slot{transition:transform .35s ease,box-shadow .35s ease}
+.img-slot img{transition:transform .6s ease,filter .6s ease}
+.tentang-big:hover,.tentang-small .img-slot:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.tentang-big:hover img,.tentang-small .img-slot:hover img{transform:scale(1.08)}
+
+/* Kartu fasilitas: kartu terangkat + gambar membesar */
+.card{transition:transform .35s ease,box-shadow .35s ease}
+.card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 16px 34px rgba(0,0,0,.45)}
+.card:active{transform:translateY(-2px) scale(.99)}
+.card:hover .img-slot img,.card:focus-visible .img-slot img{transform:scale(1.14)}
+.card-cap h3{transition:transform .35s ease}
+.card:hover .card-cap h3{transform:translateY(-2px)}
+
+/* Kotak Google Maps */
+.maps-box{transition:transform .3s ease,box-shadow .3s ease,filter .2s,background .3s}
+.maps-box:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 14px 30px rgba(0,0,0,.4);background:var(--white)}
+.maps-box:active{transform:scale(.97)}
+
+/* Galeri: slide, panah, titik */
+.slide{cursor:zoom-in;transition:transform .35s ease,box-shadow .35s ease}
+.slide:hover,.slide:focus-visible{transform:translateY(-8px);box-shadow:0 16px 34px rgba(0,0,0,.35)}
+.slide:hover img,.slide:focus-visible img{transform:scale(1.09)}
+.slide:active{transform:translateY(-3px) scale(.98)}
+.slide::before{content:"";position:absolute;right:14px;bottom:14px;z-index:2;width:42px;height:42px;border-radius:50%;
+  background:rgba(0,0,0,.5) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4M11 8v6M8 11h6'/%3E%3C/svg%3E") center/22px no-repeat;
+  opacity:0;transform:scale(.6);transition:opacity .3s,transform .3s}
+.slide:hover::before,.slide:focus-visible::before{opacity:1;transform:scale(1)}
+@media (hover:none){.slide::before{opacity:.9;transform:none}}
+.arrow{transition:opacity .2s,transform .2s,background .2s}
+.arrow svg{transition:transform .25s ease}
+.arrow:hover:not(:disabled){background:rgba(0,0,0,.15)}
+#prev:hover:not(:disabled) svg{transform:translateX(-5px)}
+#next:hover:not(:disabled) svg{transform:translateX(5px)}
+.arrow:active:not(:disabled){transform:scale(.88)}
+.dot{transition:width .35s ease,background .3s,transform .2s,opacity .2s}
+.dot:hover{transform:scale(1.25);opacity:1}
+.dot.active{width:46px;border-radius:12px}
+
+/* Footer */
+.kontak-link{transition:color .2s}
+.kontak-link:hover{color:var(--primary);text-decoration:none}
+.globe{transition:transform .4s ease}
+.kontak-link:hover .globe{transform:rotate(25deg) scale(1.12)}
+
+/* Viewer foto */
+.lb-lock{overflow:hidden}
+.lightbox{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:rgba(18,24,19,.93);backdrop-filter:blur(10px);opacity:0;transition:opacity .3s ease}
+.lightbox[hidden]{display:none}
+.lightbox.open{opacity:1}
+.lb-stage{margin:0;max-width:min(92vw,1280px);max-height:82vh;overflow:hidden;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.6);transform:scale(.92);transition:transform .35s ease}
+.lightbox.open .lb-stage{transform:scale(1)}
+.lb-stage img{max-width:min(92vw,1280px);max-height:82vh;object-fit:contain;cursor:zoom-in;transition:opacity .2s ease,transform .4s ease}
+.lb-stage img.swap{opacity:0}
+.lb-stage.zoomed img{transform:scale(2.2);cursor:zoom-out}
+.lb-btn{position:absolute;z-index:2;display:grid;place-items:center;width:50px;height:50px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;transition:transform .2s,background .2s}
+.lb-btn:hover{background:var(--primary);color:var(--gray-800);transform:scale(1.12)}
+.lb-btn:active{transform:scale(.9)}
+.lb-close{top:20px;right:20px}
+.lb-close:hover{transform:scale(1.12) rotate(90deg)}
+.lb-prev{left:20px;top:50%;margin-top:-25px}
+.lb-next{right:20px;top:50%;margin-top:-25px}
+.lb-count{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-weight:600;font-size:15px;color:var(--white)}
+.lb-hint{position:absolute;bottom:50px;left:0;right:0;text-align:center;font-size:12px;color:var(--white);opacity:.55}
+@media (max-width:720px){
+  .lb-btn{width:42px;height:42px}
+  .lb-prev{left:10px}.lb-next{right:10px}.lb-close{top:12px;right:12px}
+  .lb-prev,.lb-next{top:auto;bottom:14px;margin-top:0}
+  .lb-count{bottom:26px}.lb-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;translate:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}

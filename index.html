@@ -67,15 +67,15 @@
         <div class="info-text">
           <h2>Informasi &amp;<br>Fasilitas</h2>
           <!-- TODO: teks asli menunggu konfirmasi (di Figma masih lorem ipsum) -->
-          <p>lorem ipsum dolor sit amet consectetur adipiscing elit nulla lorem velit facere et exercitation optio omnis vel cum fuga distinctio minim magna do cupiditate quis ullamco qui est ut et qui id minus dolores similique et occaecat assumenda nihil duis quo sit laboris maxime minim elit</p>
+          <p>Umbul Gemulo dikelola oleh warga RT 06 dan RT 07, RW 02, Desa Bulukerto. Tidak ada tiket masuk, pengunjung hanya dikenai biaya parkir Rp 3.000. Tempat ini buka setiap pukul 09.00-18.00, dan biasa dikunjungi warga untuk berenang, mencuci, serta bersantai di tepi mata air.</p>
         </div>
 
-        <article class="card card-makan">
+        <article tabindex="0" class="card card-makan">
           <div class="img-slot card-img" data-name="fasilitas-makan.jpg"><img src="assets/images/fasilitas-makan.jpg" alt="Tempat makan"></div>
-          <div class="card-cap"><h3>Tempat Makan</h3><p>Deskripsi singkat fasilitas 1</p></div>
+          <div class="card-cap"><h3>Tempat Makan</h3><p>Tersedia kantin yang menjual mi instan dan aneka makanan serta minuman ringan untuk pengunjung</p></div>
         </article>
 
-        <article class="card card-bilik">
+        <article tabindex="0" class="card card-bilik">
           <div class="card-img split">
             <div class="img-slot" data-name="fasilitas-bilik-wanita.jpg"><img src="assets/images/fasilitas-bilik-wanita.jpg" alt="Bilik wanita"></div>
             <div class="img-slot" data-name="fasilitas-bilik-pria.jpg"><img src="assets/images/fasilitas-bilik-pria.jpg" alt="Bilik pria"></div>
@@ -83,9 +83,9 @@
           <div class="card-cap"><h3>Bilik Pria &amp; Wanita</h3><p>Deskripsi singkat fasilitas 2</p></div>
         </article>
 
-        <article class="card card-parkir">
+        <article tabindex="0" class="card card-parkir">
           <div class="img-slot card-img" data-name="fasilitas-parkir.jpg"><img src="assets/images/fasilitas-parkir.jpg" alt="Tempat parkir"></div>
-          <div class="card-cap"><h3>Tempat Parkir</h3><p>Deskripsi singkat fasilitas 3</p></div>
+          <div class="card-cap"><h3>Tempat Parkir</h3><p>Biaya parkir Rp 3.000. Satu-satunya biaya yang dikenakan bagi pengunjung</p></div>
         </article>
 
         <a class="maps-box" href="https://maps.app.goo.gl/hF2uDHSue9CQXusS7" id="maps-link" target="_blank" rel="noopener">Google Maps</a>
@@ -127,13 +127,29 @@
       <span class="globe">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#424242" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>
       </span>
-      https://website.com
+      https://kirosaurus.github.io/umbul-gemulo-project-pbi/
     </a>
     <div class="foot-notes">
-      <p>*Gambar yang diambil merupakan dokumentasi pribadi yang diambil secara langsung oleh tim</p>
+      <p>*Gambar yang diambil merupakan dokumentasi pribadi yang diambil secara langsung oleh tim dan sudah mendapatkan izin dari pengelola</p>
       <p>Kelompok “Geprek” Mata Kuliah Pendidikan Bahasa Indonesia Universitas Negeri Malang</p>
     </div>
   </footer>
+
+  <!-- VIEWER FOTO GALERI -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Penampil foto" hidden>
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Tutup">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Foto sebelumnya">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <figure class="lb-stage" id="lb-stage"><img id="lb-img" src="" alt=""></figure>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Foto berikutnya">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="lb-count" id="lb-count" aria-live="polite"></div>
+    <p class="lb-hint">Klik foto untuk memperbesar</p>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
