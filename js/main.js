@@ -8,6 +8,17 @@ const galleryImages = [
   { src: 'assets/images/galeri-4.webp', alt: 'Galeri Umbul Gemulo 4' },
   { src: 'assets/images/galeri-5.webp', alt: 'Galeri Umbul Gemulo 5' },
   { src: 'assets/images/galeri-6.webp', alt: 'Galeri Umbul Gemulo 6' },
+  { src: 'assets/images/Addition/36.webp', alt: 'Galeri Umbul Gemulo 7' },
+  { src: 'assets/images/Addition/41.webp', alt: 'Galeri Umbul Gemulo 8' },
+  { src: 'assets/images/Addition/42.webp', alt: 'Galeri Umbul Gemulo 9' },
+  { src: 'assets/images/Addition/43.webp', alt: 'Galeri Umbul Gemulo 10' },
+  { src: 'assets/images/Addition/45.webp', alt: 'Galeri Umbul Gemulo 11' },
+  { src: 'assets/images/Addition/35.webp', alt: 'Galeri Umbul Gemulo 12' },
+  { src: 'assets/images/Addition/34.webp', alt: 'Galeri Umbul Gemulo 13' },
+  { src: 'assets/images/Addition/32.webp', alt: 'Galeri Umbul Gemulo 14' },
+  { src: 'assets/images/Addition/30.webp', alt: 'Galeri Umbul Gemulo 15' },
+  { src: 'assets/images/Addition/16.webp', alt: 'Galeri Umbul Gemulo 16' },
+  { src: 'assets/images/Addition/19.webp', alt: 'Galeri Umbul Gemulo 17' },
 ];
 
 /* ====== Placeholder untuk gambar yang belum ada ====== */
