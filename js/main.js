@@ -2,12 +2,12 @@
    Daftar foto galeri. Tambah/kurangi baris sesuai jumlah foto;
    titik navigasi dibuat otomatis. Letakkan file di assets/images/ */
 const galleryImages = [
-  { src: 'assets/images/galeri-1.jpg', alt: 'Galeri Umbul Gemulo 1' },
-  { src: 'assets/images/galeri-2.jpg', alt: 'Galeri Umbul Gemulo 2' },
-  { src: 'assets/images/galeri-3.jpg', alt: 'Galeri Umbul Gemulo 3' },
-  { src: 'assets/images/galeri-4.jpg', alt: 'Galeri Umbul Gemulo 4' },
-  { src: 'assets/images/galeri-5.jpg', alt: 'Galeri Umbul Gemulo 5' },
-  { src: 'assets/images/galeri-6.jpg', alt: 'Galeri Umbul Gemulo 6' },
+  { src: 'assets/images/galeri-1.webp', alt: 'Galeri Umbul Gemulo 1' },
+  { src: 'assets/images/galeri-2.webp', alt: 'Galeri Umbul Gemulo 2' },
+  { src: 'assets/images/galeri-3.webp', alt: 'Galeri Umbul Gemulo 3' },
+  { src: 'assets/images/galeri-4.webp', alt: 'Galeri Umbul Gemulo 4' },
+  { src: 'assets/images/galeri-5.webp', alt: 'Galeri Umbul Gemulo 5' },
+  { src: 'assets/images/galeri-6.webp', alt: 'Galeri Umbul Gemulo 6' },
 ];
 
 /* ====== Placeholder untuk gambar yang belum ada ====== */
