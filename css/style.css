@@ -1328,3 +1328,32 @@ body {
     rgba(0, 0, 0, 0.1) 70%
   );
 }
+
+/* ============================================================
+   UPDATE 6: gambar latar di Galeri (warna dipertahankan), footer tegas (tanpa cross-fade)
+   ============================================================ */
+/* urutan: gambar (bawah) -> lapisan warna -> isi */
+.galeri > .img-slot.bg { z-index: 0; }
+.galeri > .img-slot.bg img { opacity: 1; }
+.galeri::before {
+  z-index: 1;
+  /* warna sama seperti sebelumnya, tetapi dasar hijaunya dibuat agak transparan
+     sehingga gambar terlihat samar di belakangnya. Naikkan .78 -> .9 jika gambar terlalu jelas */
+  background:
+    radial-gradient(520px 420px at 72% 37%, rgba(219, 230, 76, 0.95), rgba(168, 213, 89, 0.6) 50%, rgba(116, 196, 101, 0) 100%),
+    radial-gradient(700px 500px at 30% 73%, rgba(0, 128, 76, 0.25), transparent 70%),
+    rgba(116, 196, 101, 0.78);
+}
+/* galeri hanya memudar di bagian atas; bagian bawah tegas bertemu footer */
+.galeri > .img-slot.bg,
+.galeri::before {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade));
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade));
+}
+.galeri { padding-bottom: 70px; }
+.kontak { background: var(--gray-800); position: relative; z-index: 3; }
+
+/* UPDATE 7: titik navigasi galeri dihilangkan, panah tetap ada */
+.dots,
+.slide-count { display: none !important; }
+.slider-controls { gap: 28px; }
