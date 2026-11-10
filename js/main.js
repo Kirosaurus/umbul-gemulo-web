@@ -87,7 +87,12 @@ function onScroll(){
   topbar.classList.toggle('scrolled', window.scrollY > 40);
   const y = window.scrollY + window.innerHeight * 0.35;
   let cur = 0;
-  sections.forEach((s, i) => { if (s && s.offsetTop <= y) cur = i; });
+  sections.forEach((s, i) => {
+    if (!s) return;
+    /* section saling menumpuk (efek seamless): awal tampilan sebenarnya = offsetTop + tinggi tumpukan */
+    const overlap = -parseFloat(getComputedStyle(s).marginTop) || 0;
+    if (s.offsetTop + Math.max(overlap, 0) <= y) cur = i;
+  });
   links.forEach((a, i) => a.classList.toggle('active', i === cur));
 }
 window.addEventListener('scroll', onScroll, { passive: true });

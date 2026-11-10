@@ -1357,3 +1357,12 @@ body {
 .dots,
 .slide-count { display: none !important; }
 .slider-controls { gap: 28px; }
+
+/* UPDATE 8: posisi tujuan klik menu.
+   Sebelumnya bernilai positif sehingga halaman berhenti terlalu atas (masih terlihat section sebelumnya).
+   Nilai negatif membuat halaman berhenti tepat di awal section yang terlihat. */
+.tentang,
+.informasi,
+.galeri {
+  scroll-margin-top: calc(var(--fade) * -1);
+}
